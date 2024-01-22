@@ -1,0 +1,33 @@
+// This is where we put global styles and change variable values
+
+//Ipmort Fonts(Lato and Nunito)
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Nunito:wght@400;700&display=swap");
+
+$turquoze: #7f44dd;
+$purple: #9627d7;
+$light-purple: #a95ed4;
+$dark-purple: rgb(80, 0, 100);
+
+$light: #f8f8f8;
+
+//Update Bulma's global variables
+$family-sans-serif: "Nunito", sans-serif;
+$primary: $purple;
+
+$link: $light-purple;
+
+//Update some of Bulma's component variables
+
+$control-border-width: 2px;
+$input-border-color: transparent;
+$input-shadow: none;
+
+//Set custom global styles (will be applied to whole app)
+html {
+  background: linear-gradient(to right top, $turquoze, $purple);
+}
+
+html,
+body {
+  height: 100%;
+}
