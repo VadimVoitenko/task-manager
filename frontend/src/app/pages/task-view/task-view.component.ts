@@ -20,37 +20,30 @@ export class TaskViewComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe(
-      (params: Params) => {
-        if (params?.['listId']) {
-          // this.selectedListId = params.['listId'];
-          this.taskService.getTasks(params?.['listId']).subscribe((tasks: any) => {
+    this.route.params.subscribe((params: Params) => {
+      if (params?.['listId']) {
+        // this.selectedListId = params.['listId'];
+        this.taskService
+          .getTasks(params?.['listId'])
+          .subscribe((tasks: any) => {
             this.tasks = tasks;
-          })
-        } else {
-          this.tasks == undefined;
-        }
+          });
+      } else {
+        this.tasks == undefined;
       }
-    )
+    });
 
     this.taskService.getLists().subscribe((lists: any) => {
       this.lists = lists;
-    })
-    // this.route.params.subscribe((params: Params) => {
-    //   if (params?.['listId']) {
-    //     this.taskService
-    //       .getTasks(params?.['listId'])
-    //       .subscribe((tasks: any) => {
-    //         this.tasks = tasks;
-    //       });
-    //   } else {
-    //     this.tasks == undefined;
-    //   }
-    // });
+    });
+  }
 
-    // this.taskService.getLists().subscribe((lists: any) => {
-    //   // this.router.navigateByUrl(`lists/${lists[0]._id}`);
-    //   this.lists = lists;
-    // });
+  onTaskClick(task: Task) {
+    // we want to set the task to completed
+    this.taskService.complete(task).subscribe(() => {
+      // the task has been set to completed successully
+      console.log('Completed successfully!');
+      task.completed = !task.completed;
+    });
   }
 }

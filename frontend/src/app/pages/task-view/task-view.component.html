@@ -21,7 +21,12 @@
       <h2 class="title has-text-primary has-text-white">Tasks</h2>
 
       <!-- Task Elements -->
-      <div class="task" *ngFor="let task of tasks">
+      <div
+        class="task"
+        *ngFor="let task of tasks"
+        (click)="onTaskClick(task)"
+        [ngClass]="{ completed: task.completed }"
+      >
         <p>{{ task.title }}</p>
       </div>
 
