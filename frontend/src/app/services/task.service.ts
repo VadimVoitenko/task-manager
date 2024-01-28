@@ -6,7 +6,7 @@ import { WebRequestService } from './web-request.service';
 })
 export class TaskService {
   constructor(private webReqService: WebRequestService) {}
-  
+
   getLists() {
     return this.webReqService.get('lists');
   }
@@ -18,5 +18,10 @@ export class TaskService {
 
   getTasks(listId: string) {
     return this.webReqService.get(`lists/${listId}/tasks`);
+  }
+
+  createTask(title: string, listId: string) {
+    // We want to send a web request to create a task
+    return this.webReqService.post(`lists/${listId}/tasks`, { title });
   }
 }
