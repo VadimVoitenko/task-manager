@@ -7,23 +7,34 @@ import { HttpClient } from '@angular/common/http';
 export class WebRequestService {
   readonly ROOT_URL;
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private http: HttpClient) {
     this.ROOT_URL = 'http://localhost:3000';
   }
 
   get(url: string) {
-    return this.httpClient.get(`${this.ROOT_URL}/${url}`);
+    return this.http.get(`${this.ROOT_URL}/${url}`);
   }
 
   post(url: string, payload: Object) {
-    return this.httpClient.post(`${this.ROOT_URL}/${url}`, payload);
+    return this.http.post(`${this.ROOT_URL}/${url}`, payload);
   }
 
   patch(url: string, payload: Object) {
-    return this.httpClient.patch(`${this.ROOT_URL}/${url}`, payload);
+    return this.http.patch(`${this.ROOT_URL}/${url}`, payload);
   }
 
   delete(url: string) {
-    return this.httpClient.delete(`${this.ROOT_URL}/${url}`);
+    return this.http.delete(`${this.ROOT_URL}/${url}`);
+  }
+
+  login(email: string, password: string) {
+    return this.http.post(
+      `${this.ROOT_URL}/users/login`,
+      {
+        email,
+        password,
+      },
+      { observe: 'response' }
+    );
   }
 }

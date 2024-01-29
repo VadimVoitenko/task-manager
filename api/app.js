@@ -25,6 +25,10 @@ app.use(function (req, res, next) {
     'Access-Control-Allow-Headers',
     'Origin, X-Requested-With, Content-Type, Accept, Authorization'
   );
+  res.header(
+    'Access-Control-Expose-Headers',
+    'x-access-token, x-refresh-token'
+  );
   if (req.method === 'OPTIONS') {
     res.header(
       'Access-Control-Allow-Headers',
