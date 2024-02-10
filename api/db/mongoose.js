@@ -1,5 +1,4 @@
 // This file will handle connection logic to the mongoDB database
-
 const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
@@ -9,10 +8,10 @@ mongoose
     // useUnifiedTopology: true,
   })
   .then(() => {
-    console.log('Connected to MongoDB successfully :)');
+    console.log('Connected to MongoDB successfully!');
   })
   .catch((e) => {
-    console.log('Error with attempting to connect to MongoDB');
+    console.log('Error with attempting to connect to MongoDB!');
     console.log(e);
   });
 
