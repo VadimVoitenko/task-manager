@@ -50,7 +50,7 @@ UserSchema.methods.generateAccessAuthToken = function () {
     jwt.sign(
       { _id: user._id.toHexString() },
       jwtSecret,
-      { expiresIn: '10s' },
+      { expiresIn: '100000s' },
       (err, token) => {
         if (!err) {
           resolve(token);

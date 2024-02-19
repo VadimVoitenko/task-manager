@@ -159,7 +159,7 @@ app.patch('/lists/:id', authenticate, (req, res) => {
       $set: req.body,
     }
   ).then(() => {
-    res.send({ message: 'updated successfully' });
+    res.send({ message: 'Updated successfully' });
   });
 });
 
@@ -169,7 +169,7 @@ app.patch('/lists/:id', authenticate, (req, res) => {
  */
 app.delete('/lists/:id', authenticate, (req, res) => {
   // We want to delete the specified list (document with id in the URL)
-  List.findOneAndRemove({
+  List.findOneAndDelete({
     _id: req.params.id,
     _userId: req.user_id,
   }).then((removedListDoc) => {
@@ -291,7 +291,7 @@ app.delete('/lists/:listId/tasks/:taskId', authenticate, (req, res) => {
     })
     .then((canDeleteTasks) => {
       if (canDeleteTasks) {
-        Task.findOneAndRemove({
+        Task.findOneAndDelete({
           _id: req.params.taskId,
           _listId: req.params.listId,
         }).then((removedTaskDoc) => {
