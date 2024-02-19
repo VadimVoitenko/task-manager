@@ -29,6 +29,21 @@ export class AuthService {
     );
   }
 
+  signup(email: string, password: string) {
+    return this.webReqService.signup(email, password).pipe(
+      shareReplay(),
+      tap((res: HttpResponse<any>) => {
+        // the auth tokens will be in the header of this response
+        this.setSession(
+          res.body._id,
+          res.headers.get('x-access-token')!,
+          res.headers.get('x-refresh-token')!
+        );
+        console.log('Successfully Signed Up and now Logged In!');
+      })
+    );
+  }
+
   logout() {
     this.removeSession();
 
@@ -72,7 +87,7 @@ export class AuthService {
       .get(`${this.webReqService.ROOT_URL}/users/me/access-token`, {
         headers: {
           'x-refresh-token': this.getRefreshToken()!,
-          '_id': this.getUserId() || '',
+          _id: this.getUserId() || '',
         },
         observe: 'response',
       })
