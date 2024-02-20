@@ -14,7 +14,7 @@ $light: #f8f8f8;
 $family-sans-serif: "Nunito", sans-serif;
 $primary: $purple;
 
-$link: $light-purple;
+$link: $turquoze;
 
 //Update some of Bulma's component variables
 
@@ -60,4 +60,12 @@ body {
   padding: 35px;
   background: white;
   border-radius: 5px;
+
+  width: 350px;
+  max-width: 350px;
+}
+
+.form-hint {
+  display: flex;
+  justify-content: center;
 }
